@@ -1,0 +1,31 @@
+schemaVersion: 2.0
+timeout: 10
+
+machine:
+  java:
+    version: 8-applejdk
+
+builds:
+  - build:
+      template: buildozer:v1:prb
+      builders:
+        - scala-sbt
+    machine:
+      env:
+        RUNTIME_JDK_VERSION: 8-applejdk
+        SBT_OPTS: "-Xmx4096M"
+
+  - branchName: master
+    build:
+      template: buildozer:v1:publish
+      builders:
+        - scala-sbt
+    machine:
+      env:
+        RUNTIME_JDK_VERSION: 8-applejdk
+        SBT_OPTS: "-Xmx4096M"
+    publish:
+      release: false
+      libraries:
+        repo: m2:maps
+
