@@ -32,15 +32,13 @@ scalacOptions in Test ~= filterConsoleScalacOptions
 
 parallelExecution in Test := false // Swagger uses global state which breaks parallel tests
 
-publishTo := sonatypePublishTo.value
+//publishArtifact in Test := false
+//pomIncludeRepository := { _ => false }
+//publishMavenStyle := true
+//releaseCrossBuild := true
 
-publishArtifact in Test := false
-pomIncludeRepository := { _ => false }
-publishMavenStyle := true
-releaseCrossBuild := true
-
+/*
 import sbtrelease.ReleasePlugin.autoImport.ReleaseTransformations._
-
 releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies,
   inquireVersions,
@@ -55,3 +53,6 @@ releaseProcess := Seq[ReleaseStep](
   releaseStepCommand("sonatypeReleaseAll"),
   pushChanges
 )
+
+*/
+
