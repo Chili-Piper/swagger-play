@@ -25,7 +25,7 @@ builds:
         RUNTIME_JDK_VERSION: 8-applejdk
         SBT_OPTS: "-Xmx4096M"
     publish:
-      release: false
+      release: true
       libraries:
         repo: m2:maps
 
