@@ -1,7 +1,7 @@
 name := "swagger-play2"
-organization := "io.swagger"
+organization := "com.chilipiper"
 
-scalaVersion := "2.13.1"
+scalaVersion := "2.13.2"
 
 crossScalaVersions := Seq(scalaVersion.value, "2.12.10")
 
@@ -32,55 +32,6 @@ scalacOptions in Test ~= filterConsoleScalacOptions
 
 parallelExecution in Test := false // Swagger uses global state which breaks parallel tests
 
-pomExtra := {
-  <url>http://swagger.io</url>
-  <licenses>
-    <license>
-      <name>Apache License 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
-  <scm>
-    <url>git@github.com:swagger-api/swagger-play.git</url>
-    <connection>scm:git:git@github.com:swagger-api/swagger-play.git</connection>
-  </scm>
-  <developers>
-    <developer>
-      <id>fehguy</id>
-      <name>Tony Tam</name>
-      <email>fehguy@gmail.com</email>
-    </developer>
-    <developer>
-      <id>ayush</id>
-      <name>Ayush Gupta</name>
-      <email>ayush@glugbot.com</email>
-    </developer>
-    <developer>
-      <id>rayyildiz</id>
-      <name>Ramazan AYYILDIZ</name>
-      <email>rayyildiz@gmail.com</email>
-    </developer>
-    <developer>
-      <id>benmccann</id>
-      <name>Ben McCann</name>
-      <url>http://www.benmccann.com/</url>
-    </developer>
-    <developer>
-      <id>frantuma</id>
-      <name>Francesco Tumanischvili</name>
-      <url>http://www.ft-software.net/</url>
-    </developer>
-    <developer>
-      <id>gmethvin</id>
-      <name>Greg Methvin</name>
-      <url>https://methvin.net/</url>
-    </developer>
-  </developers>
-}
-
-publishTo := sonatypePublishTo.value
-
 publishArtifact in Test := false
 pomIncludeRepository := { _ => false }
 publishMavenStyle := true
@@ -88,17 +39,7 @@ releaseCrossBuild := true
 
 import sbtrelease.ReleasePlugin.autoImport.ReleaseTransformations._
 
-releaseProcess := Seq[ReleaseStep](
-  checkSnapshotDependencies,
-  inquireVersions,
-  runClean,
-  runTest,
-  setReleaseVersion,
-  commitReleaseVersion,
-  tagRelease,
-  releaseStepCommandAndRemaining("+publishSigned"),
-  setNextVersion,
-  commitNextVersion,
-  releaseStepCommand("sonatypeReleaseAll"),
-  pushChanges
-)
+bintrayRepository := "swagger-play2"
+bintrayOrganization := Some("chili-piper")
+bintrayReleaseOnPublish := true
+licenses := Seq("MIT" -> url("http://opensource.org/licenses/MIT"))
